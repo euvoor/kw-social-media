@@ -2,5 +2,6 @@
 
 return [
     "public" => false,
-    "description" => "",
+    "description" => "Choose a Kwerio-managed connector for future social publishing workflows.",
+    "depends_on" => [ "Settings" ],
 ];

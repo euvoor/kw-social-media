@@ -2,6 +2,16 @@
 
 use Core\Explorer\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
+use Modules\SocialMedia\Http\Controllers\AccountController;
+use Modules\SocialMedia\Services\PublishingConnectorService;
+
+Route::prefix("/account")->group(function() {
+    Route::get("/connector", [ AccountController::class, "show" ]);
+    Route::put("/connector", [ AccountController::class, "update" ])
+        ->defaults("kwerio.connector_fields", [
+            "publishing_connection" => PublishingConnectorService::FIELD_DEFINITION,
+        ]);
+});
 
 Route::post("/explorer/watch", [ ItemsController::class, "watch" ]);
 Route::post("/explorer/unwatch", [ ItemsController::class, "unwatch" ]);
