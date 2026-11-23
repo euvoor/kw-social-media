@@ -5,26 +5,21 @@ import createStore from "~/store"
 import reducer from "./index.slice"
 import pages from "./pages"
 import components from "./components"
-import accountApi from "./services/account"
 
 const reducers = {
   module: reducer,
-  [accountApi.reducerPath]: accountApi.reducer,
 }
-
-const middlewares = [ accountApi.middleware ]
 
 function Module() {
   return []
 }
-
 
 const container = document.getElementById("root")
 const root = createRoot(container)
 
 root.render(
   <App
-    store={createStore(reducers, middlewares)}
+    store={createStore(reducers)}
     module={() => <Module />}
     modulePages={pages}
     moduleComponents={components}
